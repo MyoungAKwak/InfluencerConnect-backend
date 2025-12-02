@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터페이스 경로 -->
+<mapper namespace="com.example.experience_platform.board.mapper.BoardMapper">
+
+    <!-- 결과 매핑 -->
+    <resultMap id="BoardResultMap" type="com.example.experience_platform.board.vo.BoardVo">
+        <id property="boardId" column="board_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <!-- 전체 게시글 조회 -->
+    <select id="selectAll" resultMap="BoardResultMap">
+        SELECT board_id, user_id, title, content, created_at
+        FROM board
+        ORDER BY board_id ASC
+    </select>
+
+    <!-- 특정 게시글 조회 -->
+    <select id="selectById" parameterType="long" resultMap="BoardResultMap">
+        SELECT board_id, user_id, title, content, created_at
+        FROM board
+        WHERE board_id = #{boardId}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insert" parameterType="com.example.experience_platform.board.vo.BoardVo">
+        INSERT INTO board (board_id, user_id, title, content)
+        VALUES (board_seq.NEXTVAL, 1, #{title}, #{content})
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="update" parameterType="com.example.experience_platform.board.vo.BoardVo">
+        UPDATE board
+        SET title = #{title},
+        content = #{content}
+        WHERE board_id = #{boardId}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="delete" parameterType="long">
+        DELETE FROM board
+        WHERE board_id = #{boardId}
+    </delete>
+
+</mapper>
