@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 })
 @MapperScan("com.example.experience_platform.board.mapper")
+@MapperScan("com.example.experience_platform.user.mapper")
+
 public class ExperiencePlatformApplication {
 	public static void main(String[] args) {
 		System.out.println("🔥🔥🔥 ExperiencePlatformApplication main() 실행됨!");

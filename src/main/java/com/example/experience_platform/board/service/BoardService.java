@@ -35,11 +35,6 @@ public class BoardService {
         return boardMapper.update(boardVo);
     }
 
-//    // 게시글 삭제
-//    public int deleteBoard(Long boardId) {
-//        return boardMapper.delete(boardId);
-//    }
-
 
     // 게시글 삭제
     public void deleteBoard(List<Long> boardIds) {
