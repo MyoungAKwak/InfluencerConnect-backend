@@ -1,0 +1,14 @@
+<mapper namespace="com.example.experience_platform.campaign.mapper.CampaignFileMapper">
+
+    <!-- 파일 등록 -->
+    <insert id="insertFile" parameterType="com.example.experience_platform.campaign.vo.CampaignFileVo">
+        INSERT INTO campaign_files (file_id, campaign_id, file_name, file_url, uploaded_at)
+        VALUES (campaign_files_seq.NEXTVAL, #{campaignId}, #{fileName}, #{fileUrl}, SYSDATE)
+    </insert>
+
+    <!-- 캠페인별 파일 조회 -->
+    <select id="selectFilesByCampaign" resultType="com.example.experience_platform.campaign.vo.CampaignFileVo">
+        SELECT * FROM campaign_files WHERE campaign_id = #{campaignId}
+    </select>
+
+</mapper>

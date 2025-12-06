@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터페이스 경로 -->
+<mapper namespace="com.example.experience_platform.campaign.mapper.CampaignMapper">
+
+    <resultMap id="CampaignResultMap" type="com.example.experience_platform.campaign.vo.CampaignVo">
+        <id property="campaignId" column="campaign_id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="content" column="content"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="recruitStart" column="recruit_start"/>
+        <result property="recruitEnd" column="recruit_end"/>
+        <result property="status" column="status"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storePhone" column="store_phone"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="maxApply" column="max_apply"/>
+    </resultMap>
+
+
+    <!--  전체 캠페인 조회      -->
+    <!--  특정 캠페인 조회      -->
+    <!-- 캠페인 등록 -->
+    <insert id="insert" parameterType="com.example.experience_platform.campaign.vo.CampaignVo">
+        INSERT INTO campaigns
+        (
+        campaign_id,
+        category_id,
+        admin_id,
+        content,
+        image_url,
+        recruit_start,
+        recruit_end,
+        status,
+        created_at,
+        store_name,
+        store_phone,
+        store_address,
+        max_apply
+        )
+        VALUES
+        (
+        campaigns_seq.NEXTVAL,
+        #{categoryId},
+        #{adminId},
+        #{content},
+        #{imageUrl},
+        #{recruitStart},
+        #{recruitEnd},
+        #{status},
+        SYSDATE,
+        #{storeName},
+        #{storePhone},
+        #{storeAddress},
+        #{maxApply}
+        )
+    </insert>
+
+
+
+</mapper>
