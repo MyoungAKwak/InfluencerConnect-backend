@@ -1,14 +1,41 @@
-<mapper namespace="com.example.experience_platform.campaign.mapper.CampaignFileMapper">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <!-- 파일 등록 -->
-    <insert id="insertFile" parameterType="com.example.experience_platform.campaign.vo.CampaignFileVo">
-        INSERT INTO campaign_files (file_id, campaign_id, file_name, file_url, uploaded_at)
-        VALUES (campaign_files_seq.NEXTVAL, #{campaignId}, #{fileName}, #{fileUrl}, SYSDATE)
+<mapper namespace="com.example.experience_platform.file.mapper.FileMapper">
+
+    <insert id="insertFile">
+        INSERT INTO campaign_files (
+        file_id,
+        campaign_id,
+        save_name,
+        original_name,
+        file_url,
+        uploaded_at
+        ) VALUES (
+        file_id_seq.NEXTVAL,
+        #{campaignId},
+        #{saveName},
+        #{originalName},
+        #{fileUrl},
+        SYSDATE
+        )
     </insert>
 
-    <!-- 캠페인별 파일 조회 -->
-    <select id="selectFilesByCampaign" resultType="com.example.experience_platform.campaign.vo.CampaignFileVo">
-        SELECT * FROM campaign_files WHERE campaign_id = #{campaignId}
+
+
+    <select id="getFileByCampaignId" resultType="com.example.experience_platform.file.vo.FileVo">
+        SELECT
+        file_id,
+        campaign_id,
+        save_name,
+        original_name,
+        file_url,
+        uploaded_at
+        FROM campaign_files
+        WHERE campaign_id = #{campaignId}
+        FETCH FIRST 1 ROWS ONLY
     </select>
 
 </mapper>

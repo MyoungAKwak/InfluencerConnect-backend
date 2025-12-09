@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @MapperScan("com.example.experience_platform.board.mapper")
 @MapperScan("com.example.experience_platform.user.mapper")
 @MapperScan("com.example.experience_platform.campaign.mapper")
-
+@MapperScan("com.example.experience_platform.file.mapper")
 public class ExperiencePlatformApplication {
 	public static void main(String[] args) {
 		System.out.println("🔥🔥🔥 ExperiencePlatformApplication main() 실행됨!");

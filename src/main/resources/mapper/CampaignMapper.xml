@@ -27,6 +27,11 @@
     <!--  특정 캠페인 조회      -->
     <!-- 캠페인 등록 -->
     <insert id="insert" parameterType="com.example.experience_platform.campaign.vo.CampaignVo">
+        <!-- selectKey로 미리 시퀀스를 받아 VO에 넣고 insert
+        insert 후 VO의 campaignId가 null이 아님 → File insert 가능-->
+        <selectKey keyProperty="campaignId" resultType="long" order="BEFORE">
+            SELECT campaigns_seq.NEXTVAL FROM dual
+        </selectKey>
         INSERT INTO campaigns
         (
         campaign_id,
@@ -45,22 +50,19 @@
         )
         VALUES
         (
-        campaigns_seq.NEXTVAL,
+        #{campaignId},
         #{categoryId},
-        #{adminId},
+        1,
         #{content},
-        #{imageUrl},
-        #{recruitStart},
-        #{recruitEnd},
-        #{status},
+        #{imageUrl, jdbcType=VARCHAR},
+        #{recruitStart, jdbcType=DATE},
+        #{recruitEnd, jdbcType=DATE},
+        #{status, jdbcType=VARCHAR},
         SYSDATE,
         #{storeName},
-        #{storePhone},
-        #{storeAddress},
-        #{maxApply}
+        #{storePhone, jdbcType=VARCHAR},
+        #{storeAddress, jdbcType=VARCHAR},
+        #{maxApply, jdbcType=VARCHAR}
         )
     </insert>
-
-
-
 </mapper>

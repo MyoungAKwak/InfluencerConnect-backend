@@ -9,10 +9,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardVo {
-    private Long boardId;
-    //게시글마다 누가 작성했는지 알아야 하니까 userId 필요
-    private Long userId;
-    private String title;
-    private String content;
-    private Date createdAt;
+    private Long boardId; // 오토
+    private Long userId; // 작성자 ID
+    private String title; // 제목
+    private String content; // 내용
+    private Date createdAt; // 작성일
 }
