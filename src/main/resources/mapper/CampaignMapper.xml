@@ -11,7 +11,7 @@
         <result property="categoryId" column="category_id"/>
         <result property="adminId" column="admin_id"/>
         <result property="content" column="content"/>
-        <result property="imageUrl" column="image_url"/>
+        <result property="imageUrl" column="file_Url"/>
         <result property="recruitStart" column="recruit_start"/>
         <result property="recruitEnd" column="recruit_end"/>
         <result property="status" column="status"/>
@@ -24,6 +24,25 @@
 
 
     <!--  전체 캠페인 조회      -->
+    <select id="selectAll" resultMap="CampaignResultMap">
+        SELECT
+        c.campaign_id,
+        c.store_name,
+        c.store_phone,
+        c.store_address,
+        c.content,
+        cf.file_url,
+        c.recruit_start,
+        c.recruit_end,
+        c.status,
+        c.created_at,
+        c.max_apply
+        FROM campaigns c
+        LEFT JOIN campaign_files cf
+        ON c.campaign_id = cf.campaign_id
+        ORDER BY c.campaign_id ASC
+    </select>
+
     <!--  특정 캠페인 조회      -->
     <!-- 캠페인 등록 -->
     <insert id="insert" parameterType="com.example.experience_platform.campaign.vo.CampaignVo">

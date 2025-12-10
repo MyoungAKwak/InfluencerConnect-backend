@@ -37,5 +37,9 @@ public class CampaignController {
         // DB 저장 로직
         // 예: campaignMapper.insertCampaign(campaignVo);
         // 여기서 campaignVo에는 imageUrl이 파일명으로 들어감
-
+    // 전체조회
+    @GetMapping
+    public List<CampaignVo> getAllCampaigns() {
+        return campaignService.getAllCampaigns();
+    }
 }

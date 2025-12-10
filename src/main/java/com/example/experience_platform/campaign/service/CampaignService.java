@@ -23,15 +23,15 @@ public class CampaignService {
         this.fileUtils = fileUtils;
     }
 
-    public int createCampaign(CampaignVo vo, MultipartFile file) {
+    public int createCampaign(CampaignVo vo, MultipartFile multipartFile) {
 
         int result = campaignMapper.insert(vo);
         Long campaignId = vo.getCampaignId();
         if(result != 1) return 0;
 
-        if(file == null || file.isEmpty()) return 1;
+        if(multipartFile == null || multipartFile.isEmpty()) return 1;
 
-        FileVo savedFile = fileUtils.uploadFile(file);
+        FileVo savedFile = fileUtils.uploadFile(multipartFile);
         // 1. Campaign insert 후 campaignId 받아오기
 
 
@@ -47,6 +47,11 @@ public class CampaignService {
         fileMapper.insertFile(fileVo);
 
         return 1;
+    }
+
+    //전체 캠페인 조회
+    public List<CampaignVo> getAllCampaigns() {
+        return campaignMapper.selectAll();
     }
 }
 
