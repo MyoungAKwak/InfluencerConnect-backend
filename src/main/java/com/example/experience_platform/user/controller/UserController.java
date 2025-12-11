@@ -17,7 +17,7 @@ public class UserController {
     // 회원가입
     @PostMapping
     @ResponseBody
-    public int saveUser(@RequestBody final UserVo userVo) {
+    public Long saveUser(@RequestBody final UserVo userVo) {
         return userService.createUser(userVo);
     }
 
@@ -36,6 +36,12 @@ public class UserController {
         return userService.update(userVo);
     }
 
+    // 회원 수 카운팅 (ID 중복 체크)
+    @GetMapping("/member-count")
+    @ResponseBody
+    public int countMemberByLoginId(@RequestParam final String loginId) {
+        return userService.countMemberByLoginId(loginId);
+    }
 
     // 회원탈퇴
 }

@@ -18,4 +18,8 @@ public interface UserMapper {
 
     // 회원탈퇴
     int delete(Long userid);
+
+     //회원 수 카운팅 (ID 중복 체크)
+    int countByLoginId(String loginId);
+
 }

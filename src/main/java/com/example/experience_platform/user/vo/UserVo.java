@@ -4,6 +4,8 @@ package com.example.experience_platform.user.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -19,4 +21,11 @@ public class UserVo {
     private String email; // 이메일
     private String role; // 역할(권한)
 
+    //encodingPassword( )는 비밀번호를 암호화
+    public void encodingPassword(PasswordEncoder passwordEncoder) {
+        if (StringUtils.isEmpty(password)) {
+            return;
+        }
+        password = passwordEncoder.encode(password);
+    }
 }

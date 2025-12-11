@@ -27,6 +27,7 @@
     <select id="selectAll" resultMap="CampaignResultMap">
         SELECT
         c.campaign_id,
+        c.category_id,
         c.store_name,
         c.store_phone,
         c.store_address,

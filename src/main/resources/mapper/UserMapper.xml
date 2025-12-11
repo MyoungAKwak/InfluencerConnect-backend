@@ -20,6 +20,16 @@
         VALUES (users_seq.NEXTVAL, #{loginId}, #{password}, #{name}, #{email}, #{gender})
     </insert>
 
+    <!-- 회원 수 카운팅 (ID 중복 체크) -->
+    <select id="countByLoginId" parameterType="string" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            users
+        WHERE
+            login_id = #{loginId}
+    </select>
+
 
     <!-- 회원 상세정보 조회 -->
     <select id="findByLoginId" parameterType="string" resultMap="UserResultMap">
