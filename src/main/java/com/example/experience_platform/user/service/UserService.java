@@ -31,7 +31,7 @@ public class UserService {
         return userMapper.countByLoginId(loginId);
     }
 
-    // 회원정보조회
+    // 회원정보조회, 로그인
     public UserVo findByLoginId(String loginId) {
         return userMapper.findByLoginId(loginId);
     }

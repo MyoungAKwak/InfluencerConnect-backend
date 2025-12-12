@@ -14,10 +14,24 @@
         <result property="gender" column="gender"/>
     </resultMap>
 
+
     <!-- 회원 정보 저장 (회원가입)  -->
     <insert id="insert" parameterType="com.example.experience_platform.user.vo.UserVo">
-        INSERT INTO users (user_id, login_id, password, name, email, gender)
-        VALUES (users_seq.NEXTVAL, #{loginId}, #{password}, #{name}, #{email}, #{gender})
+        INSERT INTO users
+            (user_id,
+            login_id,
+            password,
+            name,
+            email,
+            gender)
+        VALUES
+            (users_seq.NEXTVAL,
+            #{loginId},
+            #{password},
+            #{name},
+            #{email},
+            #{gender}
+            )
     </insert>
 
     <!-- 회원 수 카운팅 (ID 중복 체크) -->
@@ -30,10 +44,28 @@
             login_id = #{loginId}
     </select>
 
+    <!-- 로그인   -->
+    <select id="findUserForLogin" parameterType="String"
+            resultType="com.example.experience_platform.user.vo.UserVo">
+        SELECT
+            login_id,
+            password,
+            name,
+            email
+        FROM
+            users
+        WHERE
+            login_id = #{loginId}
+    </select>
 
     <!-- 회원 상세정보 조회 -->
     <select id="findByLoginId" parameterType="string" resultMap="UserResultMap">
-        SELECT loginId, password, name, email, gender
+        SELECT
+            loginId,
+            password,
+            name,
+            email,
+            gender
         FROM users
         WHERE login_id = #{loginid}
     </select>
@@ -41,10 +73,12 @@
     <!-- 회원 정보 수정 -->
     <update id="update" parameterType="com.example.experience_platform.user.vo.UserVo">
         UPDATE USERS
-        SET name = #{name},
-        email = #{email},
-        gender = #{gender}
-        WHERE login_id = #{loginid}
+            SET
+            name = #{name},
+            email = #{email},
+            gender = #{gender}
+        WHERE
+            login_id = #{loginid}
     </update>
 
     <!-- 회원 정보 삭제 (회원 탈퇴) -->
